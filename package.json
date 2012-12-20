@@ -1,0 +1,25 @@
+{
+  "name": "json2plain",
+  "description": "Convert JSON structure to plain text, perfect as a content negotiation fallback in REST APIs",
+  "version": "0.1.0",
+  "author": {
+    "name": "Jarrad Seers",
+    "email": "jarrad@jarradseers.com"
+  },
+  "contributors": [
+    {"name": "Jarrad Seers", "email": "jarrad@jarradseers.com"}
+  ],
+  "main": "index",
+  "keywords": [
+    "json",
+    "plain",
+    "text/plain",
+    "converter",
+    "content negotiation",
+    "pretty json",
+    "REST",
+    "API"
+  ],
+  "devDependencies": {},
+  "engines": { "node": "*" }
+}
