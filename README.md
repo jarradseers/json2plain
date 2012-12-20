@@ -1,4 +1,3 @@
-
 # JSON2Plain
 
 JSON in, Plain text out.
@@ -18,8 +17,8 @@ var plain = json2plain(json, options);
 ```
 
 ### Parameters
-`json` - Can be a JSON Object or valid JSON String.
-`options` - Optional Object, options are listed below.
+* `json` - Can be a JSON Object or valid JSON String.
+* `options` - Optional Object, options are listed below.
 
 ### Simple Example
 
@@ -42,15 +41,15 @@ console.log(plain);
 
 ## Options
 
-`depth`     {Number}   - amount of indentation to start with, defaults to 1.
-`newline`   {String}   - string to use for newline, defaults to '\n'.
-`indent`    {String}   - indentation, defaults to two spaces: '  '.
-`separator` {String}   - used to separate key from value, default: ': '.
-`prefix`    {String}   - inserted before the output, defaults to '\n'.
-`suffix`    {String}   - appended to the final output, defaults to '\n'.
-`list`      {String}   - 'numbered' will list numbered array keys, defaults to '- '.
-`formatKey` {Function} - format the keys: function(key){return key.toUpperCase()}..
-`formatVal` {Function} - format the values: function(val) {return val}.
+* `depth`     {Number}   - amount of indentation to start with, defaults to 1.
+* `newline`   {String}   - string to use for newline, defaults to '\n'.
+* `indent`    {String}   - indentation, defaults to two spaces: '  '.
+* `separator` {String}   - used to separate key from value, default: ': '.
+* `prefix`    {String}   - inserted before the output, defaults to '\n'.
+* `suffix`    {String}   - appended to the final output, defaults to '\n'.
+* `list`      {String}   - 'numbered' will list numbered array keys, defaults to '- '.
+* `formatKey` {Function} - format the keys: function(key){return key.toUpperCase()}..
+* `formatVal` {Function} - format the values: function(val) {return val}.
 
 Please see the _examples_ folder for working examples of _json2plain_ in action.
 
