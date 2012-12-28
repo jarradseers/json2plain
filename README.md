@@ -76,17 +76,17 @@ var plain = json2plain(json, options);
 console.log(plain);
 ```
 
-   Hello	=	World
-   Number	=	48392
-   Array	=	
-      * String
-      * 3948484
-      * True
-      * String
-   Object	=	
-      String	=	Hello again
-      Another	=	
-         Hey	=	There
+	Hello	=	World
+		Number	=	48392
+		Array	=	
+			* String
+			* 3948484
+			* True
+			* String
+		Object	=	
+		String	=	Hello again
+			Another	=	
+				Hey	=	There
 
 
 ## Options
