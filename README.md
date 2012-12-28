@@ -27,7 +27,7 @@ var json2plain = require('json2plain');
 
 var json = {
   "code": 7489394874,
-  "error": "It don\'t workie",
+  "error": "It don't workie",
   "description": "Someone broke it."
 };
 
@@ -38,6 +38,56 @@ console.log(plain);
 	Code: 7489394874
 	Error: It don't workie
 	Description: Someone broke it.
+
+### More Advanced Example
+
+```js
+var json2plain = require('json2plain');
+
+var json = { 
+  hello: "world",
+  number: 48392,
+  array: [
+    'string',
+    3948484,
+    true,
+    'string'
+  ], "object": {
+    "string": "hello again",
+    "another": {
+      "hey": "there"
+    }   
+  }
+};
+
+function ucFirst(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+var options = { 
+  list: '* ',
+  indent: '   ',
+  separator: '\t=\t',
+  formatKey: ucFirst,
+  formatValue: ucFirst
+};
+
+var plain = json2plain(json, options);
+console.log(plain);
+```
+
+   Hello	=	World
+   Number	=	48392
+   Array	=	
+      * String
+      * 3948484
+      * True
+      * String
+   Object	=	
+      String	=	Hello again
+      Another	=	
+         Hey	=	There
+
 
 ## Options
 
