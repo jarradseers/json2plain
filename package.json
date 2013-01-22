@@ -13,9 +13,9 @@
   "keywords": [
     "json",
     "plain",
-		"text",
-		"json2text",
-		"json2plain",
+    "text",
+    "json2text",
+    "json2plain",
     "text/plain",
     "converter",
     "content negotiation",
