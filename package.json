@@ -24,5 +24,6 @@
     "API"
   ],
   "devDependencies": {},
-  "engines": { "node": "*" }
+  "engines": { "node": "*" },
+  "repository": "git://github.com/jarradseers/json2plain"
 }
