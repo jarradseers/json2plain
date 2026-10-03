@@ -1,62 +1,67 @@
 # JSON2Plain
 
-JSON in, Plain text out.
+[![CI](https://github.com/jarradseers/json2plain/actions/workflows/ci.yml/badge.svg)](https://github.com/jarradseers/json2plain/actions/workflows/ci.yml)
+[![npm](https://img.shields.io/npm/v/json2plain.svg)](https://www.npmjs.com/package/json2plain)
 
-The _json2plain_ module was written as a suitable final fallback for a REST API doing automatic content negotiation.
+JSON in, plain text out.
+
+The _json2plain_ module was written as a suitable final fallback for a REST API doing automatic content negotiation. Small, with no dependencies.
 
 ## Installation
 
-	$ npm install json2plain
+```bash
+$ npm install json2plain
+```
 
 ## Usage
 
 ```js
-var json2plain = require('json2plain');
+const json2plain = require('json2plain');
 
-var plain = json2plain(json, options);
+const plain = json2plain(json, options);
 ```
 
-### Parameters
-* `json` - Can be a JSON Object or valid JSON String.
-* `options` - Optional Object, options are listed below.
+* `json` - an object, an array, or a valid JSON string.
+* `options` - optional object, see [Options](#options).
 
-### Simple Example
+It returns a string. An invalid JSON string throws a `SyntaxError`.
+
+### Simple example
 
 ```js
-var json2plain = require('json2plain');
+const json2plain = require('json2plain');
 
-var json = {
-  "code": 7489394874,
-  "error": "It don't workie",
-  "description": "Someone broke it."
+const json = {
+  code: 7489394874,
+  error: "It don't workie",
+  description: 'Someone broke it.'
 };
 
-var plain = json2plain(json);
-console.log(plain);
+console.log(json2plain(json));
 ```
 
-	Code: 7489394874
-	Error: It don't workie
-	Description: Someone broke it.
+```
 
-### More Advanced Example
+  Code: 7489394874
+  Error: It don't workie
+  Description: Someone broke it.
+
+```
+
+### More advanced example
 
 ```js
-var json2plain = require('json2plain');
+const json2plain = require('json2plain');
 
-var json = { 
-  hello: "world",
+const json = {
+  hello: 'world',
   number: 48392,
-  array: [
-    'string',
-    3948484,
-    true,
-    'string'
-  ], "object": {
-    "string": "hello again",
-    "another": {
-      "hey": "there"
-    }   
+  array: ['string', 3948484, true, 'string'],
+  object: {
+    string: 'hello again',
+    another: {
+      hey: 'there'
+    }
   }
 };
 
@@ -64,66 +69,69 @@ function ucFirst(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-var options = { 
+const options = {
   list: '* ',
   indent: '   ',
-  separator: '\t=\t',
-  formatKey: ucFirst,
-  formatValue: ucFirst
+  separator: ' = ',
+  formatVal: ucFirst
 };
 
-var plain = json2plain(json, options);
-console.log(plain);
+console.log(json2plain(json, options));
 ```
 
-	Hello	=	World
-		Number	=	48392
-		Array	=	
-			* String
-			* 3948484
-			* True
-			* String
-		Object	=	
-		String	=	Hello again
-			Another	=	
-				Hey	=	There
+```
 
+   Hello = World
+   Number = 48392
+   Array = 
+      * String
+      * 3948484
+      * True
+      * String
+   Object = 
+      String = Hello again
+      Another = 
+         Hey = There
+
+```
+
+There are more in the [examples folder](examples).
 
 ## Options
 
-* `depth`     {Number}   - amount of indentation to start with, defaults to 1.
-* `newline`   {String}   - string to use for newline, defaults to '\n'.
-* `indent`    {String}   - indentation, defaults to two spaces: '  '.
-* `separator` {String}   - used to separate key from value, default: ': '.
-* `prefix`    {String}   - inserted before the output, defaults to '\n'.
-* `suffix`    {String}   - appended to the final output, defaults to '\n'.
-* `list`      {String}   - 'numbered' will list numbered array keys, defaults to '- '.
-* `formatKey` {Function} - format the keys: function(key){return key.toUpperCase()}..
-* `formatVal` {Function} - format the values: function(val) {return val}.
+| Option | Type | Default | Description |
+|---|---|---|---|
+| `depth` | number | `1` | Levels of indentation to start with. |
+| `newline` | string | `'\n'` | Line separator. |
+| `indent` | string | two spaces | One level of indentation. |
+| `separator` | string | `': '` | Placed between a key and its value. |
+| `prefix` | string | `'\n'` | Inserted before the output. |
+| `suffix` | string | `'\n'` | Appended to the output. |
+| `list` | string | `'- '` | Placed before each array item. `'numbered'` shows the item's index as a key instead. |
+| `formatKey` | function | capitalise the first letter | Format each key. |
+| `formatVal` | function | leave as is | Format each value, which is passed as a string. `formatValue` is accepted as well. |
 
-Please see the _examples_ folder for working examples of _json2plain_ in action.
+String options can be set to `''`, for example `{ prefix: '', suffix: '' }` for output with no surrounding blank lines.
 
-# License 
+## How values are written
 
-(The MIT License)
+* Objects and arrays are written one level deeper, on the lines below their key.
+* `null` and empty objects and arrays leave the value blank.
+* Values JSON cannot represent, such as functions and `undefined`, are dropped.
 
-Copyright (c) 2012 Jarrad Seers &lt;jarrad@jarradseers.com&gt;
+## Upgrading from 0.1.x
 
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-'Software'), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
+* Values are no longer capitalised by default; this now matches the documentation. Pass `formatVal` to format them.
+* Object keys that look like numbers, such as `"2024"`, are written as keys. They were written as list items and the key was lost.
+* Empty strings and `depth: 0` are honoured as options. They were replaced by the defaults.
 
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
+## Tests
 
-THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+```bash
+$ npm install
+$ npm test
+```
+
+## License
+
+[MIT](LICENSE)

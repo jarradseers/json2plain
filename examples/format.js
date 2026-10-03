@@ -1,6 +1,6 @@
-var json2plain = require('../');
+const json2plain = require('../');
 
-var json = {
+const json = {
   hello: "world",
   number: 48392,
   array: [
@@ -24,7 +24,7 @@ function ucFirst(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-var options = {
+const options = {
   list: '* ',
   indent: '   ',
   separator: '\t|\t',
@@ -32,5 +32,5 @@ var options = {
   formatVal: ucFirst
 };
 
-var plain = json2plain(json, options);
+const plain = json2plain(json, options);
 console.log(plain);
