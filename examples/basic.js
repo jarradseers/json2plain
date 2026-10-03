@@ -1,10 +1,10 @@
-var json2plain = require('../');
+const json2plain = require('../');
 
-var json = {
+const json = {
   code: 7489394874,
   error: 'It don\'t workie',
   description: 'Someone broke it.'
 };
 
-var plain = json2plain(json);
+const plain = json2plain(json);
 console.log(plain);

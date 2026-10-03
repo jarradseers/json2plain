@@ -1,6 +1,6 @@
-var json2plain = require('../');
+const json2plain = require('../');
 
-var json = {
+const json = {
   hello: "world",
   array: [
     'string',
@@ -10,7 +10,7 @@ var json = {
   ]
 };
 
-var plain = json2plain(json, {
+const plain = json2plain(json, {
   list: 'numbered'
 });
 console.log(plain);

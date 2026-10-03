@@ -1,15 +1,23 @@
 {
   "name": "json2plain",
+  "version": "0.2.0",
   "description": "Convert JSON structure to plain text, perfect as a content negotiation fallback in REST APIs",
-  "version": "0.1.1",
-  "author": {
-    "name": "Jarrad Seers",
-    "email": "jarrad@jarradseers.com"
-  },
-  "contributors": [
-    {"name": "Jarrad Seers", "email": "jarrad@jarradseers.com"}
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "lib"
   ],
-  "main": "index",
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "test": "eslint . && node --test test/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jarradseers/json2plain.git"
+  },
   "keywords": [
     "json",
     "plain",
@@ -23,7 +31,15 @@
     "REST",
     "API"
   ],
-  "devDependencies": {},
-  "engines": { "node": "*" },
-  "repository": "git://github.com/jarradseers/json2plain"
+  "author": "Jarrad Seers <jarrad@jarradseers.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jarradseers/json2plain/issues"
+  },
+  "homepage": "https://github.com/jarradseers/json2plain#readme",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.12.0",
+    "globals": "^17.13.0"
+  }
 }
